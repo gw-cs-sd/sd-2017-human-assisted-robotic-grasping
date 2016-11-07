@@ -1,0 +1,81 @@
+<Environment>
+<bkgndcolor>0.3 0.7 0.8</bkgndcolor>
+ <camtrans>1.418 -1.234 2.963</camtrans>
+ <camrotaxis>0.724 0.302 0.619 68</camrotaxis>
+ 
+<!--  <KinBody file="data/segway.kinbody.xml">
+   <Translation>-0.0671   -0.0819    0.7550</Translation>
+ </KinBody> -->
+ 
+ <!-- <Robot file="../../robots/barrettwam.robot.xml" name="BarrettWAM">
+   <KinBody>
+     <Translation>-.22 -.14 -.346</Translation>
+     <Body type="dynamic">
+       <Geom type="cylinder">
+         <RotationAxis>1 0 0 -90</RotationAxis>
+         <radius>0.08</radius>
+         <height>0.6</height>
+         <diffusecolor>0.3 0.3 0.3</diffusecolor>
+         <Translation> 0.2286 0.1397 -0.346</Translation>
+       </Geom>
+     </Body>
+   </KinBody>
+   <translation>-0.754 0.3265 1.036</translation>
+ </Robot>
+  -->
+<Robot file="robots/pr2-beta-static.zae">
+</Robot>
+
+<KinBody name="table">
+   <Body name="leg1" type="static">
+     <Geom type="box">
+       <extents>0.0625 0.0625 0.75</extents>
+       <Translation>0.5 0.5 0.75</Translation>
+       <diffuseColor>.6 .6 .6</diffuseColor>
+      <ambientColor>0.6 0.6 0.6</ambientColor>
+     </Geom>
+   </Body>
+   <Body name="leg2" type="static">
+     <Geom type="box">
+       <extents>0.0625 0.0625 0.75</extents>
+       <Translation>0.5 -0.5 0.75</Translation>
+       <diffuseColor>.6 .6 .6</diffuseColor>
+      <ambientColor>0.6 0.6 0.6</ambientColor>
+     </Geom>
+   </Body>
+   <Body name="leg3" type="static">
+     <Geom type="box">
+       <extents>0.0625 0.0625 0.75</extents>
+       <Translation>-0.5 0.5 0.75</Translation>
+       <diffuseColor>.6 .6 .6</diffuseColor>
+      <ambientColor>0.6 0.6 0.6</ambientColor>
+     </Geom>
+   </Body>
+   <Body name="leg4" type="static">
+     <Geom type="box">
+       <extents>0.0625 0.0625 0.75</extents>
+       <Translation>-0.5 -0.5 0.75</Translation>
+       <diffuseColor>.6 .6 .6</diffuseColor>
+      <ambientColor>0.6 0.6 0.6</ambientColor>
+     </Geom>
+   </Body>
+   <Body name="top" type="static">
+     <Geom type="box">
+       <extents>0.5625 0.5625 0.005</extents>
+       <Translation>0 0 1.5</Translation>
+       <diffuseColor>.6 .6 .6</diffuseColor>
+      <ambientColor>0.6 0.6 0.6</ambientColor>
+     </Geom>
+   </Body>
+ </KinBody>
+
+ <KinBody name="floor">
+   <Body type="static">
+     <Geom type="box">
+       <extents>10 10 0.005</extents>
+       <diffuseColor>.6 .6 .6</diffuseColor>
+     	<ambientColor>0.6 0.6 0.6</ambientColor>
+     </Geom>
+   </Body>
+ </KinBody>
+</Environment>
