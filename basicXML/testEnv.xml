@@ -26,46 +26,59 @@
 </Robot> -->
 
 <Robot file="robots/puma.robot.xml"></Robot>
-
+<!--<KinBody name="teapot" file="/home/workstation4/Downloads/teapot.dae">
+	<Translation>0.75 0.1 1.2</Translation>
+<source lang="dae"> <collision>teapot 0.001</collision> <render>teapot 0.001</render> </source> 
+</KinBody>-->
 <KinBody name="block">
    <Body name="myBlock">
      <Geom type="box">
-       <extents>0.0508 0.0508 0.0508</extents>
-       <Translation>0.75 0 0.75</Translation>
+       <extents>0.0208 0.0208 0.0208</extents>
+       <Translation>0.75 0 1.2</Translation>
+     </Geom>
+   </Body>
+</KinBody>
+
+<KinBody name="cylinder">
+   <Body name="myCylinder">
+     <Geom type="cylinder">
+	<height>0.0416</height>
+	<radius>0.0208</radius>
+	<Translation>0.75 0.1 1.2</Translation>
      </Geom>
    </Body>
 </KinBody>
 
 <KinBody name="table">
-   <Translation>1.5 1.5 0.0</Translation>
+   <Translation>1.0 0.0 0.0</Translation>
    <Body name="leg1" type="static">
      <Geom type="box">
-       <extents>0.0625 0.0625 0.75</extents>
-       <Translation>0.5 0.5 0.75</Translation>
+       <extents>0.0625 0.0625 0.5</extents>
+       <Translation>0.5 0.5 0.5</Translation>
        <diffuseColor>.6 .6 .6</diffuseColor>
       <ambientColor>0.6 0.6 0.6</ambientColor>
      </Geom>
    </Body>
    <Body name="leg2" type="static">
      <Geom type="box">
-       <extents>0.0625 0.0625 0.75</extents>
-       <Translation>0.5 -0.5 0.75</Translation>
+       <extents>0.0625 0.0625 0.5</extents>
+       <Translation>0.5 -0.5 0.5</Translation>
        <diffuseColor>.6 .6 .6</diffuseColor>
       <ambientColor>0.6 0.6 0.6</ambientColor>
      </Geom>
    </Body>
    <Body name="leg3" type="static">
      <Geom type="box">
-       <extents>0.0625 0.0625 0.75</extents>
-       <Translation>-0.5 0.5 0.75</Translation>
+       <extents>0.0625 0.0625 0.5</extents>
+       <Translation>-0.5 0.5 0.5</Translation>
        <diffuseColor>.6 .6 .6</diffuseColor>
       <ambientColor>0.6 0.6 0.6</ambientColor>
      </Geom>
    </Body>
    <Body name="leg4" type="static">
      <Geom type="box">
-       <extents>0.0625 0.0625 0.75</extents>
-       <Translation>-0.5 -0.5 0.75</Translation>
+       <extents>0.0625 0.0625 0.5</extents>
+       <Translation>-0.5 -0.5 0.5</Translation>
        <diffuseColor>.6 .6 .6</diffuseColor>
       <ambientColor>0.6 0.6 0.6</ambientColor>
      </Geom>
@@ -73,7 +86,7 @@
    <Body name="top" type="static">
      <Geom type="box">
        <extents>0.5625 0.5625 0.005</extents>
-       <Translation>0 0 1.5</Translation>
+       <Translation>0 0 1</Translation>
        <diffuseColor>.6 .6 .6</diffuseColor>
       <ambientColor>0.6 0.6 0.6</ambientColor>
      </Geom>
@@ -85,7 +98,7 @@
      <Geom type="box">
        <extents>10 10 0.005</extents>
        <diffuseColor>.6 .6 .6</diffuseColor>
-     	<ambientColor>0.6 0.6 0.6</ambientColor>
+     	<ambientColor>0.1 0.1 0.1</ambientColor>
      </Geom>
    </Body>
  </KinBody>
