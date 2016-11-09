@@ -5,3 +5,5 @@ Use the master branch of this repository for your **working** code.  You should 
 The gh-pages branch of this repository has starter files for your web page. You should upload PDF versions of all your assignments and keep your web page up to date.
 
 **Once you understand the structure listed above, you should replace this readme with something specific to your project.**
+
+**ADDING TO CONFIRM I CAN PUSH FROM LOCAL SEAS WORKSTATION**
