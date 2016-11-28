@@ -32,7 +32,9 @@
 </KinBody>-->
 
 <KinBody name="teapot" file="teapot-meters.dae">
-	<Translation>0.75 0.1 1.2</Translation>
+	<Translation>0.75 -0.1 1.2</Translation>
+	<rotationmat>1 0 0 0 1 0 0 0 1</rotationmat>
+<rotationaxis>1 0 0 90</rotationaxis>
 <source lang="dae">
 </source>
 </KinBody>
