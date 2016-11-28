@@ -30,6 +30,12 @@
 	<Translation>0.75 0.1 1.2</Translation>
 <source lang="dae"> <collision>teapot 0.001</collision> <render>teapot 0.001</render> </source> 
 </KinBody>-->
+
+<KinBody name="teapot" file="teapot-meters.dae">
+	<Translation>0.75 0.1 1.2</Translation>
+<source lang="dae">
+</source>
+</KinBody>
 <KinBody name="block">
    <Body name="myBlock">
      <Geom type="box">
