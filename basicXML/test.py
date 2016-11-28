@@ -34,6 +34,14 @@ validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollis
 print(validgrasps)
 
 
+target = env.GetKinBody("mug")
+gmodel = databases.grasping.GraspingModel(robot,target)
+gmodel.autogenerate()
+validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollision=True, checkik=True, backupdist=0.0, returnnum=1)
+
+print(validgrasps)
+
+
 robot.Grab(target)
 gmodel.moveToPreshape(validgrasps[0])
 Tgoal = gmodel.getGlobalGraspTransform(validgrasps[0],collisionfree=True)
