@@ -43,7 +43,7 @@ print(validgrasps)
 
 
 #robot.Grab(target)
-gmodel.showgrasp(validgrasps[0])
+#gmodel.showgrasp(validgrasps[0])
 gmodel.moveToPreshape(validgrasps[0])
 Tgoal = gmodel.getGlobalGraspTransform(validgrasps[0],collisionfree=True)
 basemanip = interfaces.BaseManipulation(robot)
@@ -53,8 +53,8 @@ taskmanip = interfaces.TaskManipulation(robot)
 taskmanip.CloseFingers()
 robot.WaitForController(0)
 
-with env: # lock the environment since robot will be used
-	raveLogInfo("Robot "+robot.GetName()+" has "+repr(robot.GetDOF())+" joints with values:\n"+repr(robot.GetDOFValues()))
-	robot.SetDOFValues([0.5],[0]) # set joint 0 to value 0.5
-	T = robot.GetLinks()[1].GetTransform() # get the transform of link 1
-	raveLogInfo("The transformation of link 1 is:\n"+repr(T))
+#with env: # lock the environment since robot will be used
+#	raveLogInfo("Robot "+robot.GetName()+" has "+repr(robot.GetDOF())+" joints with values:\n"+repr(robot.GetDOFValues()))
+#	robot.SetDOFValues([0.5],[0]) # set joint 0 to value 0.5
+#	T = robot.GetLinks()[1].GetTransform() # get the transform of link 1
+#	raveLogInfo("The transformation of link 1 is:\n"+repr(T))
