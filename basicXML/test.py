@@ -18,32 +18,32 @@ validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollis
 
 print(validgrasps)
 
-# target = env.GetKinBody("cylinder")
-# gmodel = databases.grasping.GraspingModel(robot,target)
-# gmodel.autogenerate()
-# validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollision=True, checkik=True, backupdist=0.0, returnnum=1)
+target = env.GetKinBody("cylinder")
+gmodel = databases.grasping.GraspingModel(robot,target)
+gmodel.autogenerate()
+validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollision=True, checkik=True, backupdist=0.0, returnnum=1)
 
-# print(validgrasps)
-
-
-# target = env.GetKinBody("teapot")
-# gmodel = databases.grasping.GraspingModel(robot,target)
-# gmodel.autogenerate()
-# validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollision=True, checkik=True, backupdist=0.0, returnnum=1)
-
-# print(validgrasps)
+print(validgrasps)
 
 
-# target = env.GetKinBody("mug")
-# gmodel = databases.grasping.GraspingModel(robot,target)
-# gmodel.autogenerate()
-# validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollision=True, checkik=True, backupdist=0.0, returnnum=1)
+target = env.GetKinBody("teapot")
+gmodel = databases.grasping.GraspingModel(robot,target)
+gmodel.autogenerate()
+validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollision=True, checkik=True, backupdist=0.0, returnnum=1)
 
-# print(validgrasps)
+print(validgrasps)
 
 
-#robot.Grab(target)
-#gmodel.showgrasp(validgrasps[0])
+target = env.GetKinBody("mug")
+gmodel = databases.grasping.GraspingModel(robot,target)
+gmodel.autogenerate()
+validgrasps, validindicees = gmodel.computeValidGrasps(startindex=0, checkcollision=True, checkik=True, backupdist=0.0, returnnum=1)
+
+print(validgrasps)
+
+
+robot.Grab(target)
+gmodel.showgrasp(validgrasps[0])
 gmodel.moveToPreshape(validgrasps[0])
 Tgoal = gmodel.getGlobalGraspTransform(validgrasps[0],collisionfree=True)
 basemanip = interfaces.BaseManipulation(robot)
