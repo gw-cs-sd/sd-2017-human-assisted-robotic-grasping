@@ -43,7 +43,7 @@ print(validgrasps)
 
 
 robot.Grab(target)
-gmodel.showgrasp(validgrasps[0])
+#gmodel.showgrasp(validgrasps[0])
 gmodel.moveToPreshape(validgrasps[0])
 Tgoal = gmodel.getGlobalGraspTransform(validgrasps[0],collisionfree=True)
 basemanip = interfaces.BaseManipulation(robot)
