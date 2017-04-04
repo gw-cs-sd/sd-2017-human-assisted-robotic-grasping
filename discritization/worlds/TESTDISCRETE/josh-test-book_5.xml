@@ -1,0 +1,20 @@
+<world>
+	<graspableBody>
+		<filename>models/objects/book.xml</filename>
+		<transform>
+			<fullTransform>(0.923879532511 0.0 0.0 0.382683432365)[0.0 1000.0 0.0]</fullTransform>
+		</transform>
+	</graspableBody>
+	<robot>
+		<filename>models/robots/Barrett/Barrett.xml</filename>
+		<dofValues>+0 +0 +0 +0 +0 +0 +0 +0 +0 +0 </dofValues>
+		<transform>
+			<fullTransform>(0.923879532511 0.0 0.0 -0.382683432365)[0.0 1000.0 -124.752]</fullTransform>
+		</transform>
+	</robot>
+	<camera>
+		<position>-6.51888 -6.92682 +1044.94</position>
+		<orientation>-4.66444e-05 -0.00453356 +0.735252 +0.677779</orientation>
+		<focalDistance>+1048.98</focalDistance>
+	</camera>
+</world>

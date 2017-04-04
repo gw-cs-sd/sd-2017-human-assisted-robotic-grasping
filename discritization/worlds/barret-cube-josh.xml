@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<world>
+	<graspableBody>
+		<filename>models/objects/cube.xml</filename>
+		<transform>
+			<fullTransform>(+1 +0 +0 +0)[+0 +0 +0]</fullTransform>
+		</transform>
+	</graspableBody>
+	<robot>
+		<filename>models/robots/Barrett/Barrett.xml</filename>
+		<dofValues>+0 +1.1914 +0 +0 +1.20769 +0 +0 +1.29809 +0 +0 </dofValues>
+		<transform>
+			<fullTransform>(+1 +0 +0 +0)[+5.58401e-06 -3.60064 -36.1307]</fullTransform>
+		</transform>
+	</robot>
+	<camera>
+		<position>-290.785 +218.468 +1.69888</position>
+		<orientation>-0.34507 +0.525864 +0.751389 -0.199522</orientation>
+		<focalDistance>+480.936</focalDistance>
+	</camera>
+</world>
