@@ -1,0 +1,49 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww21400\viewh36980\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Builds an L1 GWS by simply taking the union of all the contact wrenches,\
+  and using these as the input for the convex hull operation\
+  (performed by qhull). The output of qhull is the list of equations of the\
+  hyperplanes that bound the hull as well as the hull area and hull volume.\
+  These are all saved within the GWS.\
+  Returns FAILURE or SUCCESS.\
+\
+  You can ask for the GWS to be built using only a subset of the 6 dimensions \
+  of force and torque normally available. These are, in this order: \
+  \
+  fx, fy, fz, tx, ty, tz\
+\
+  If you want only a subset to be used, pass a vector of 6 ints with 1 for the\
+  dimensions you want or 0 for those that you do not want. For example, if you\
+  want a GWS that only uses fx, fy and tz, pass the following vector:\
+\
+  1, 1, 0, 0, 0, 1\
+\
+  If you want to use all 6 dimensions, pass the default value of \
+  GWS::ALL_DIMENSIONS.\
+\
+\
+\
+Need to see if we can print out DBGP (
+\b http://docs.ros.org/electric/api/graspit/html/debug_8h.html
+\b0 )\
+\
+\
+\
+buildHyperplanesFromWrenches is the one where GWSs seem to be built (dimensions are passed in though) \'97 gws.ccp line 447\
+There seems to be a hyperPlane array and a facet object. What are these, where are they being stored, how is this working?\
+\
+\
+\
+quality.cpp line 241 shows that you could possibly define different tws\
+\
+\
+http://www.qhull.org/html/#description\
+http://www.qhull.org/html/qh-opto.htm#o\
+\
+need to look at how to output hull stuff. This is how we can compare convex hulls. \
+}

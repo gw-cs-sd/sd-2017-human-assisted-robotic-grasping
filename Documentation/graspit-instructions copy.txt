@@ -1,0 +1,190 @@
+0) PREPARATION
+  I deleted all my graspit files from installed folders, but maybe you should not.Try the following and let me know ifit works.. if it does not, we'll tweak it together.
+
+1) setup directories
+   -----------------
+  a) cd to <working directory> // mine is /home/pablo/workplace/source
+  b) mkdir graspit_install     //this will be the final install dir for JB's graspit fork
+  c) mkdir graspit_api_install //this will be the final install dir for JB's grasp_planning_graspit
+
+2) install graspit
+   ----------------- from https://github.com/JenniferBuehler/graspit
+  a) cd to <working directory> 
+  b) git clone https://github.com/JenniferBuehler/graspit 
+  c) cd graspit
+  d) mkdir build
+  e) cd build
+  f) cmake -DCMAKE_INSTALL_PREFIX=<working directory>/graspit_install -DCMAKE_BUILD_TYPE=Debug ..
+      // in my case: cmake -DCMAKE_INSTALL_PREFIX=/home/pablo/workplace/source/graspit_install ..
+  g) make install
+
+3) install grasp_planning_graspit 
+   ------------------------------ from https://github.com/JenniferBuehler/graspit-pkgs
+  a) cd to <working directory> 
+  b) git clone https://github.com/JenniferBuehler/graspit-pkgs
+  c) cd graspit-pkgs
+  d) cd to grasp_planning_graspit  // *** IMPORTANT ***
+  d) mkdir build
+  e) cd build
+  // I used ccmake but maybe the following cmake commands sets the correct variables:
+  f) cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=<working_directory>/graspit_api_install -DBUILD_GRASPIT=false -Dgraspit_DIR=<working_directory>/graspit_install/lib/graspit/ ..
+    
+    // in my case: 
+    //cmake -DCMAKE_INSTALL_PREFIX=/home/pablo/workplace/source/graspit_api_install -DBUILD_GRASPIT=false -Dgraspit_DIR=/home/pablo/workplace/source/graspit_install/lib/graspit/ ..
+
+  NOTE: Another way to set/check that the variables are properly set is this: after you cmake, open the   CMakeCache.txt file and check the values for the following (substitute with your own <working_directory>):
+
+  ...
+     //Install path prefix, prepended onto install directories.
+    CMAKE_INSTALL_PREFIX:PATH=/home/pablo/workplace/source/graspit_api_install
+  ...
+    //No help, variable specified on the command line.
+    BUILD_GRASPIT:UNINITIALIZED=false
+  ...
+    //The directory containing a CMake configuration file for graspit.
+    graspit_DIR:PATH=/home/pablo/workplace/source/graspit_install/lib/graspit
+
+PROBLEM HERE, graspit_DIR:PATH doesn’t exist/////////////////////////////////////////////////////////////////////
+
+
+  g) make install
+
+  
+4) move the files
+   ----------------- to the appropriate locations // this is important for running the tutorial
+  // I think this can be avoided if we set the GRASPIT var to <working_directory>/graspit-pkgs/jaco_graspit_sample, but I prefer to have it all in the same place.
+
+  a) copy
+    <working_directory>/graspit-pkgs/jaco_graspit_sample/worlds/jaco_robot_world.xml
+    to
+    <working_directory>/graspit/worlds/
+
+  b) copy
+    <working_directory>/graspit-pkgs/jaco_graspit_sample/models/objects/small_cube.iv and
+    <working_directory>/graspit-pkgs/jaco_graspit_sample/models/objects/small_cube.xml
+    to
+    <working_directory>/graspit/models/objects/
+
+  c) copy
+    <working_directory>/graspit-pkgs/jaco_graspit_sample/models/robots/jaco_robot
+    to
+    <working_directory>/graspit/models/robots/
+
+
+5) setup the tutorial
+   -------------------
+  a) cd to <working directory>/graspit_api_install/share/grasp_planning_graspit/tutorial
+  b) mkdir build
+  c) cd build
+  d) cmake -DCMAKE_BUILD_TYPE=Debug -Dgrasp_planning_graspit_DIR=<working_directory>/graspit_api_install/lib/grasp_planning_graspit -Dgraspit_DIR=<working_directory>/graspit_install/lib/graspit ..
+
+  //in my case
+  //cmake -DCMAKE_BUILD_TYPE=Debug -Dgrasp_planning_graspit_DIR=/home/pablo/workplace/source/graspit_api_install/lib/grasp_planning_graspit -Dgraspit_DIR=/home/pablo/workplace/source/graspit_install/lib/graspit ..
+
+  e) make
+
+6) Setup GRASPIT env var
+   ---------------------
+  a) cd to your home directory: cd
+  b) check to see if you have a .bashrc, .profile or .bash_profile //in that order
+  c) say you have a .bashrc, then you  must open it to edit it and go to the end and add this:
+    export GRASPIT=<working_directory>/graspit/
+    // in my case: export GRASPIT=~/workplace/source/graspit/ 
+  d) run: source .bashrc (from the terminal window that you will try the tutorial from)
+  e) check that the env var is set: echo $GRASPIT
+  f) you should see : <working_directory>/graspit/ 
+      // in my case: /home/pablo/workplace/source/graspit/
+
+7) RUN the tutorial
+   -----------------
+   a) cd to <working directory>/graspit_api_install/share/grasp_planning_graspit/tutorial/build
+   b) make an output folder:
+      mkdir sample_output
+   b) run:
+       ./simple_planning_tutorial <working directory>/graspit/worlds/jaco_robot_world.xml sample_output/
+// in my case:
+//./simple_planning_tutorial ~/workplace/source/graspit/worlds/jaco_robot_world.xml sample_output/
+
+OUTPUT:
+// Output from the console should look like this:
+
+  WARNING: Initialise Log Singleton to use the proper Logger. Now printing to std out.
+  Enter INVENTOR thread loop - GraspItSceneManagerHeadless.cpp, 108
+  Starting with args GraspIt, --headless - GraspItSceneManagerHeadless.cpp, 114
+  Created. - GraspItSceneManagerHeadless.cpp, 116
+  Creating new graspit world - GraspItSceneManagerHeadless.cpp, 99
+  Initialized GraspItSceneManager. - GraspItSceneManager.cpp, 134
+  Loading graspitWorld /home/pablo/workplace/source/graspit/worlds/jaco_robot_world.xml - GraspItSceneManager.cpp, 528
+  Object using Flock of Birds sensor 1
+  Creating base...
+
+  Setting up 3 degrees of freedom...
+  Creating 3 kinematic chains (fingers)...
+  Chain 0:   Creating joints
+     Joint 0
+    Creating links
+     Link 0
+    Creating dynamic joints
+  Chain 1:   Creating joints
+     Joint 0
+    Creating links
+     Link 0
+    Creating dynamic joints
+  Chain 2:   Creating joints
+     Joint 0
+    Creating links
+     Link 0
+    Creating dynamic joints
+  No normalization data found; using factors of 1.0
+  Read 1 eigengrasps from EG file
+  Using eigengrasps from file: eigen/eigen.xml
+  Loaded virtual contacts from file virtual/contacts.vgr
+  Could not set camera
+  Loaded graspitWorld /home/pablo/workplace/source/graspit/worlds/jaco_robot_world.xml - GraspItSceneManager.cpp, 534
+  Registering EigenGraspPlanner1 - GraspItSceneManager.cpp, 205
+  Initializing planner type - EigenGraspPlanner.cpp, 948
+  Initiating planning, trial #0 - EigenGraspPlanner.cpp, 359
+  Waiting for planning algorithm to finish... - EigenGraspPlanner.cpp, 364
+  ### Start planner! ### - EigenGraspPlanner.cpp, 220
+  Entering planner loop... - EigenGraspPlanner.cpp, 237
+  created new L1 Norm GWS.
+  === EigenGraspPlanner update === - EigenGraspPlanner.cpp, 1044
+  Current Step: 30100 - EigenGraspPlanner.cpp, 1066
+  Energy: 86.2485 - EigenGraspPlanner.cpp, 1154
+...
+...  // A LOT OF UPDATES
+...
+  === EigenGraspPlanner update === - EigenGraspPlanner.cpp, 1044
+  Current Step: 70000 - EigenGraspPlanner.cpp, 1066
+  Energy: 42.1925 - EigenGraspPlanner.cpp, 1154
+  Planning complete!! - EigenGraspPlanner.cpp, 173
+  === EigenGraspPlanner complete === - EigenGraspPlanner.cpp, 1052
+  Planning done. - EigenGraspPlanner.cpp, 375
+  MoveDOF failsafe hit
+  MoveDOF failsafe hit
+  MoveDOF failsafe hit
+  Grasp results:
+  Legal grasp: Energy = 42.1925 Joint DOFs = [-0.38692, -0.38692, -0.38692] EigenGrasps = [-0.235264] Relative transform = T: trans = [48.6045, 165.994, -44.6981] rot = 3.00198 (angle) / [0.801888, 0.592354, -0.078047] (axis)
+  Legal grasp: Energy = 42.2596 Joint DOFs = [-0.386142, -0.386142, -0.386142] EigenGrasps = [-0.236612] Relative transform = T: trans = [55.4906, 161.859, -52.0626] rot = 2.96698 (angle) / [0.812881, 0.576417, -0.083474] (axis)
+  Legal grasp: Energy = 42.6451 Joint DOFs = [-0.3786, -0.3786, -0.3786] EigenGrasps = [-0.249675] Relative transform = T: trans = [59.3513, 158.376, -63.013] rot = 2.91851 (angle) / [0.819092, 0.564237, -0.103565] (axis)
+  EigenGrasp planner destructor - EigenGraspPlanner.cpp, 87
+  Unregistering EigenGraspPlanner1 - GraspItSceneManager.cpp, 186
+  deleting GWS
+  Exit EigenGrasp planner destructor - EigenGraspPlanner.cpp, 116
+  GraspItSceneManagerHeadless::destroyCore() - GraspItSceneManagerHeadless.cpp, 60
+  Now exit Inventor thread. - GraspItSceneManagerHeadless.cpp, 77
+  Exit INVENTOR thread loop - GraspItSceneManagerHeadless.cpp, 132
+  QThreadStorage: Thread 0x7f2b780013d0 exited after QThreadStorage 5 destroyed
+  GraspItSceneManager destructor - GraspItSceneManager.cpp, 93
+
+
+8) Checking output
+   -----------------
+
+  a) I opened the graspit simulator and opened the results from Eigengrasp, which are in the output folder:    
+     <working directory>/graspit_api_install/share/grasp_planning_graspit/tutorial/build/sample_output/worlds/world_1.xml
+     <working directory>/graspit_api_install/share/grasp_planning_graspit/tutorial/build/sample_output/worlds/world_2.xml
+     <working directory>/graspit_api_install/share/grasp_planning_graspit/tutorial/build/sample_output/worlds/world_3.xml
+
+
+IF you get here, we can talk about how to contitue for a paper!!!
